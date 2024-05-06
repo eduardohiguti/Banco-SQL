@@ -39,10 +39,6 @@ public class ContaBancaria {
         return saldo;
     }
 
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
-    }
-
     public String getTitular() {
         return titular;
     }
@@ -56,7 +52,6 @@ class ContaCorrente extends ContaBancaria {
     public void calcularRendimento() {
         BigDecimal juros = new BigDecimal("10.00");
         saldo = saldo.add(juros);
-        System.out.println("Juros adicionados ao saldo da conta corrente.");
     }
 }
 
@@ -66,9 +61,8 @@ class ContaPoupanca extends ContaBancaria {
     }
 
     public void calcularRendimento() {
-        BigDecimal taxaDeJurosAnual = new BigDecimal("0.03");
-        BigDecimal juros = getSaldo().multiply(taxaDeJurosAnual);
+        final BigDecimal TAXA_DE_JUROS_ANUAL = new BigDecimal("0.03");
+        BigDecimal juros = getSaldo().multiply(TAXA_DE_JUROS_ANUAL);
         saldo = saldo.add(juros);
-        System.out.println("Juros calculados e adicionados ao saldo da poupança.");
     }
 }

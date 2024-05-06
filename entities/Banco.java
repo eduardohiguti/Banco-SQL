@@ -22,8 +22,10 @@ public class Banco {
             System.out.println("O que você deseja fazer?");
             System.out.println("1. Criar uma conta");
             System.out.println("2. Gerenciar sua conta");
-            System.out.println("3. Excluir sua conta");
-            System.out.println("4. Calcular rendimento das contas");
+            System.out.println("3. Mostrar informações de todas as contas");
+            System.out.println("4. Mostrar informações detalhadas de uma conta");
+            System.out.println("5. Calcular rendimento das contas");
+            System.out.println("6. Excluir sua conta");
             System.out.println("0. Finalizar");
 
             escolhaMenu = sc.nextInt();
@@ -42,12 +44,22 @@ public class Banco {
                     break;
                 case 3:
                     System.out.println("--------------------------------------------------------------------------------");
-                    excluirConta();
+                    mostrarInformacoesDeTodasAsContas();
                     System.out.println("--------------------------------------------------------------------------------");
                     break;
                 case 4:
                     System.out.println("--------------------------------------------------------------------------------");
+                    mostrarInformacoesDeUmaConta();
+                    System.out.println("--------------------------------------------------------------------------------");
+                    break;
+                case 5:
+                    System.out.println("--------------------------------------------------------------------------------");
                     calcularRendimentoParaTodasAsContas();
+                    System.out.println("--------------------------------------------------------------------------------");
+                    break;
+                case 6:
+                    System.out.println("--------------------------------------------------------------------------------");
+                    excluirConta();
                     System.out.println("--------------------------------------------------------------------------------");
                     break;
                 case 0: 
@@ -116,9 +128,8 @@ public class Banco {
 
     public void gerenciarConta() {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 para realizar um depósito");
-        System.out.println("2 para realizar um saque");
-        System.out.println("3 para visualizar as informações da conta");
+        System.out.println("1. Realizar um depósito");
+        System.out.println("2. Realizar um saque");
         int escolhaGerenciar = sc.nextInt();
         sc.nextLine();
 
@@ -129,17 +140,13 @@ public class Banco {
             case 2:
                 saqueDaConta();
                 break;
-            case 3:
-                infoDaConta();
-                break;
             default:
                 System.out.println("Opção inválida. Por favor, escolha uma opção válida");
                 break;
         }
     }
 
-    public void infoDaConta() {
-        System.out.println("--------------------------------------------------------------------------------");
+    public void mostrarInformacoesDeUmaConta() {
         System.out.println("Insira o número da conta que deseja ver:");
         int numeroConta = sc.nextInt();
         sc.nextLine();
@@ -164,6 +171,14 @@ public class Banco {
         
         if (!contaEncontrada) {
             System.out.println("Conta não encontrada.");
+        }
+    }
+
+    public void mostrarInformacoesDeTodasAsContas() {
+        for (ContaBancaria conta : contaBancaria) {
+            System.out.println("Número da conta " + conta.getContaID());
+            System.out.println("Titular da conta: " + conta.getTitular());
+            System.out.println();
         }
     }
 
