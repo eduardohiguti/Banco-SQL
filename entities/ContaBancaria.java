@@ -7,12 +7,6 @@ public class ContaBancaria {
     protected BigDecimal saldo;
     protected String titular;
 
-    public ContaBancaria(int contaID, String titular) {
-        this.contaID = contaID;
-        this.titular = titular;
-        this.saldo = BigDecimal.ZERO;
-    }
-
     public ContaBancaria(int contaID, BigDecimal saldo, String titular) {
         this.contaID = contaID;
         this.saldo = saldo;
@@ -22,7 +16,7 @@ public class ContaBancaria {
     public void deposito(BigDecimal montante) {
         if (montante.compareTo(BigDecimal.ZERO) > 0) {
             saldo = saldo.add(montante);
-            System.out.println("Deposito de R$ " + montante + " feito. Seu saldo agora é " + saldo);
+            System.out.println("Deposito de R$ " + montante + " feito. Seu saldo agora é R$" + saldo);
         } else {
             System.out.println("Valor de depósito inválido.");
         }
@@ -31,7 +25,7 @@ public class ContaBancaria {
     public void saque(BigDecimal montante) {
         if (montante.compareTo(BigDecimal.ZERO) > 0 && saldo.compareTo(montante) >= 0) {
             saldo = saldo.subtract(montante);
-            System.out.println("Saque de R$ " + montante + " feito. Seu saldo agora é " + saldo);
+            System.out.println("Saque de R$ " + montante + " feito. Seu saldo agora é R$" + saldo);
         } else {
             System.out.println("Valor de saque inválido ou fundos insuficientes.");
         }
@@ -55,10 +49,6 @@ public class ContaBancaria {
 }
 
 class ContaCorrente extends ContaBancaria {
-    public ContaCorrente(int contaID, String titular) {
-        super(contaID, titular);
-    }
-
     public ContaCorrente(int contaID, BigDecimal saldo, String titular) {
         super(contaID, saldo, titular);
     }
@@ -71,10 +61,6 @@ class ContaCorrente extends ContaBancaria {
 }
 
 class ContaPoupanca extends ContaBancaria {
-    public ContaPoupanca(int contaID, String titular) {
-        super(contaID, titular);
-    }
-
     public ContaPoupanca(int contaID, BigDecimal saldo, String titular) {
         super(contaID, saldo, titular);
     }
