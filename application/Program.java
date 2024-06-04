@@ -1,10 +1,15 @@
 package application;
 
-import entities.Banco;
+import javax.swing.SwingUtilities;
+import entities.BancoGUI;
 
 public class Program {
     public static void main(String[] args) {
-        Banco banco = new Banco();
-        banco.menu();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new BancoGUI().frame.setVisible(true);
+            }
+        });
     }
 }
